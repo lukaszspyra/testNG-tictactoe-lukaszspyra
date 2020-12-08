@@ -4,42 +4,37 @@ import java.util.Scanner;
 
 public final class Game {
 
-    private final Board board;
     private final Arbiter arbiter;
+    private Board board;
+    private Player currentPlayer;
 
-    public Game(final Board board, final Arbiter arbiter) {
+    public Game(final Board board, final Arbiter arbiter, final Player firstPlayer) {
         this.board = board;
         this.arbiter = arbiter;
+        this.currentPlayer = firstPlayer;
     }
 
-    public static void main(String[] args) {
-        Board board = new Board(new Player[3][3]);
-        Arbiter arbiter = new Arbiter();
-        Game game = new Game(board, arbiter);
-
+    public void begin() {
         Scanner scanner = new Scanner(System.in);
         var currentPlayer = Player.X;
         Move move;
 
-        while (true) {
+        do {
             System.out.println("Player" + currentPlayer + " row <1;3>: ");
             var first = scanner.nextInt();
             System.out.println("Player" + currentPlayer + " column <1;3>: ");
             var second = scanner.nextInt();
             move = currentPlayer.makeMove(first - 1, second - 1);
 
-            if (!game.board.isValid(move)) {
+            if (!board.isValid(move)) {
                 System.out.println("Invalid input - try again!");
                 continue;
             }
 
-            Board updatedBoard = game.board.playAt(move);
-            System.out.println(updatedBoard);
-            if (game.arbiter.judge(updatedBoard)) {
-                System.out.println("You win");
-                break;
-            }
+            board = board.playAt(move);
+            System.out.println(board);
             currentPlayer = currentPlayer.nextPlayer();
-        }
+        } while (!arbiter.judge(board));
+        System.out.println("You win");
     }
 }
