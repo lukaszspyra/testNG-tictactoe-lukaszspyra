@@ -26,3 +26,5 @@ hs_err_pid*
 .idea
 *.iml
 target
+src/main/java/game/tictactoe/Main.java
+src/main/java/game/tictactoe/Game.java
