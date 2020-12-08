@@ -1,6 +1,6 @@
 package game.tictactoe;
 
-final class Arbiter {
+public final class Arbiter {
 
     boolean judge(Board board) {
         return (checkRows(board) || checkColumns(board) || checkDiagonals(board));

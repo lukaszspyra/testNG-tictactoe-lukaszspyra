@@ -3,7 +3,11 @@ package game.tictactoe;
 import java.util.Arrays;
 
 public class Board {
-    private PlayerMark[][] gameBoard = new PlayerMark[3][3];
+    private final PlayerMark[][] gameBoard;
+
+    Board(final PlayerMark[][] gameBoard) {
+        this.gameBoard = gameBoard;
+    }
 
     PlayerMark[][] getGameBoard() {
         return gameBoard;

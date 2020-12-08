@@ -23,7 +23,7 @@ public final class Game {
         List<Player> players = new ArrayList<>();
         players.add(player1);
         players.add(player2);
-        Board board = new Board();
+        Board board = new Board(new PlayerMark[3][3]);
         Arbiter arbiter = new Arbiter();
         Game game = new Game(board, arbiter, players);
 
