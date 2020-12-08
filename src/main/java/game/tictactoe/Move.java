@@ -1,14 +1,14 @@
 package game.tictactoe;
 
 public final class Move {
-    private int row;
-    private int column;
-    private Player playerMark;
+    private final int row;
+    private final int column;
+    private final Player player;
 
-    Move(int row, int column, Player playerMark) {
+    Move(int row, int column, Player player) {
         this.row = row;
         this.column = column;
-        this.playerMark = playerMark;
+        this.player = player;
     }
 
     int getRow() {
@@ -19,8 +19,8 @@ public final class Move {
         return column;
     }
 
-    Player getPlayerMark() {
-        return playerMark;
+    Player getPlayer() {
+        return player;
     }
 
 }

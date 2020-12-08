@@ -26,7 +26,7 @@ public final class Board {
     }
 
     public Board playAt(Move makeUpMove){
-        gameBoard[makeUpMove.getRow()][makeUpMove.getColumn()] = makeUpMove.getPlayerMark();
+        gameBoard[makeUpMove.getRow()][makeUpMove.getColumn()] = makeUpMove.getPlayer();
         return this;
     }
 
