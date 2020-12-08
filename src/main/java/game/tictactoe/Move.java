@@ -3,9 +3,9 @@ package game.tictactoe;
 public final class Move {
     private int row;
     private int column;
-    private PlayerMark playerMark;
+    private Player playerMark;
 
-    Move(int row, int column, PlayerMark playerMark) {
+    Move(int row, int column, Player playerMark) {
         this.row = row;
         this.column = column;
         this.playerMark = playerMark;
@@ -19,7 +19,7 @@ public final class Move {
         return column;
     }
 
-    PlayerMark getPlayerMark() {
+    Player getPlayerMark() {
         return playerMark;
     }
 

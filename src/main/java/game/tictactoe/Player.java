@@ -1,7 +1,12 @@
 package game.tictactoe;
 
-public interface Player {
+public enum Player{
 
-    Move makeMove(int row, int column);
+    X,
+    O,
+    ;
 
+    Move makeMove(int row, int column){
+        return new Move(row, column, this);
+    }
 }

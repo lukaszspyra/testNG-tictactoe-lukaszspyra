@@ -18,12 +18,12 @@ public final class Game {
 
     public static void main(String[] args) {
 
-        Player player1 = new Player1(PlayerMark.X);
-        Player player2 = new Player2(PlayerMark.O);
+        Player playerX = Player.X;
+        Player playerO = Player.O;
         List<Player> players = new ArrayList<>();
-        players.add(player1);
-        players.add(player2);
-        Board board = new Board(new PlayerMark[3][3]);
+        players.add(playerX);
+        players.add(playerO);
+        Board board = new Board(new Player[3][3]);
         Arbiter arbiter = new Arbiter();
         Game game = new Game(board, arbiter, players);
 
@@ -32,9 +32,9 @@ public final class Game {
         Move move;
 
         while (true) {
-            System.out.println("Player" + nextPlayer.getClass().getSimpleName() + " row <1;3>: ");
+            System.out.println("Player" + nextPlayer + " row <1;3>: ");
             var first = scanner.nextInt();
-            System.out.println("Player" + nextPlayer.getClass().getSimpleName() + " column <1;3>: ");
+            System.out.println("Player" + nextPlayer + " column <1;3>: ");
             var second = scanner.nextInt();
             move = nextPlayer.makeMove(first - 1, second - 1);
 

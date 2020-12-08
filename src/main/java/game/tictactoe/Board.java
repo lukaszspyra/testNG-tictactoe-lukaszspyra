@@ -2,22 +2,22 @@ package game.tictactoe;
 
 import java.util.Arrays;
 
-public class Board {
-    private final PlayerMark[][] gameBoard;
+public final class Board {
+    private final Player[][] gameBoard;
 
-    Board(final PlayerMark[][] gameBoard) {
+    Board(final Player[][] gameBoard) {
         this.gameBoard = gameBoard;
     }
 
-    PlayerMark[][] getGameBoard() {
+    Player[][] getGameBoard() {
         return gameBoard;
     }
 
     public boolean isValid(Move move) {
-        return inBoardLimit(move) && isNotPlayedYet(move);
+        return inBoardLimits(move) && isNotPlayedYet(move);
     }
 
-    private boolean inBoardLimit(Move move){
+    private boolean inBoardLimits(Move move){
         return !(move.getRow() > 2 || move.getRow() < 0 || move.getColumn() > 2 || move.getColumn() < 0);
     }
 
