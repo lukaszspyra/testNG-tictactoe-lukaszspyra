@@ -14,7 +14,7 @@ public final class Game {
         this.currentPlayer = firstPlayer;
     }
 
-    public void begin() {
+    public Player play() {
         Scanner scanner = new Scanner(System.in);
         Move move;
 
@@ -34,7 +34,13 @@ public final class Game {
             board = board.playAt(move);
             System.out.println(board);
             currentPlayer = currentPlayer.nextPlayer();
-        } while (!arbiter.judge(board));
-        System.out.println(currentPlayer + " wins");
+        } while (!arbiter.judge(board) || board.isAnyCellEmpty());
+
+        if (arbiter.judge(board)){
+            System.out.println(currentPlayer + " wins");
+        } else {
+            System.out.println("It is draw");
+        }
+        return currentPlayer;
     }
 }

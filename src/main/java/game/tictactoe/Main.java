@@ -7,7 +7,7 @@ public final class Main {
         Arbiter arbiter = new Arbiter();
         Player firstPlayer = Player.X;
         Game game = new Game(board, arbiter, firstPlayer);
-        game.begin();
+        game.play();
     }
 
 }

@@ -1,6 +1,7 @@
 package game.tictactoe;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public final class Board {
     private final Player[][] gameBoard;
@@ -23,6 +24,10 @@ public final class Board {
 
     private boolean isNotPlayedYet(Move move){
         return gameBoard[move.getRow()][move.getColumn()] == null;
+    }
+
+    public boolean isAnyCellEmpty(){
+        return Arrays.stream(gameBoard).anyMatch(Objects::isNull);
     }
 
     public Board playAt(Move makeUpMove){
