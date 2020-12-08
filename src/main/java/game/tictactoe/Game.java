@@ -1,42 +1,32 @@
 package game.tictactoe;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public final class Game {
 
     private final Board board;
     private final Arbiter arbiter;
-    private final List<Player> players;
 
-    public Game(final Board board, final Arbiter arbiter, final List<Player> players) {
+    public Game(final Board board, final Arbiter arbiter) {
         this.board = board;
         this.arbiter = arbiter;
-        this.players = players;
     }
 
     public static void main(String[] args) {
-
-        Player playerX = Player.X;
-        Player playerO = Player.O;
-        List<Player> players = new ArrayList<>();
-        players.add(playerX);
-        players.add(playerO);
         Board board = new Board(new Player[3][3]);
         Arbiter arbiter = new Arbiter();
-        Game game = new Game(board, arbiter, players);
+        Game game = new Game(board, arbiter);
 
         Scanner scanner = new Scanner(System.in);
-        var nextPlayer = players.get(0);
+        var currentPlayer = Player.X;
         Move move;
 
         while (true) {
-            System.out.println("Player" + nextPlayer + " row <1;3>: ");
+            System.out.println("Player" + currentPlayer + " row <1;3>: ");
             var first = scanner.nextInt();
-            System.out.println("Player" + nextPlayer + " column <1;3>: ");
+            System.out.println("Player" + currentPlayer + " column <1;3>: ");
             var second = scanner.nextInt();
-            move = nextPlayer.makeMove(first - 1, second - 1);
+            move = currentPlayer.makeMove(first - 1, second - 1);
 
             if (!game.board.isValid(move)) {
                 System.out.println("Invalid input - try again!");
@@ -49,15 +39,7 @@ public final class Game {
                 System.out.println("You win");
                 break;
             }
-            nextPlayer = game.nextTurn(nextPlayer);
+            currentPlayer = currentPlayer.nextPlayer();
         }
-    }
-
-    private Player nextTurn(final Player lastPlayed) {
-        int lastPlayerIndex = players.indexOf(lastPlayed);
-        if ((lastPlayerIndex + 1) < players.size()) {
-            return players.get(lastPlayerIndex + 1);
-        }
-        return players.get(0);
     }
 }
