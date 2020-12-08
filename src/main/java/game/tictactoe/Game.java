@@ -16,7 +16,6 @@ public final class Game {
 
     public void begin() {
         Scanner scanner = new Scanner(System.in);
-        var currentPlayer = Player.X;
         Move move;
 
         do {
@@ -24,6 +23,7 @@ public final class Game {
             var first = scanner.nextInt();
             System.out.println("Player" + currentPlayer + " column <1;3>: ");
             var second = scanner.nextInt();
+
             move = currentPlayer.makeMove(first - 1, second - 1);
 
             if (!board.isValid(move)) {
@@ -35,6 +35,6 @@ public final class Game {
             System.out.println(board);
             currentPlayer = currentPlayer.nextPlayer();
         } while (!arbiter.judge(board));
-        System.out.println("You win");
+        System.out.println(currentPlayer + " wins");
     }
 }

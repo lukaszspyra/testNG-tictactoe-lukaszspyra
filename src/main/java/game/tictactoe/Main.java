@@ -1,6 +1,6 @@
 package game.tictactoe;
 
-public class Main {
+public final class Main {
 
     public static void main(String[] args) {
         Board board = new Board(new Player[3][3]);
