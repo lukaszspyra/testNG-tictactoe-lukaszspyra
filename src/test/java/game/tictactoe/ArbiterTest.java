@@ -64,7 +64,7 @@ public class ArbiterTest {
         var result = arbiter.checkDiagonals(gameBoard);
 
         //then
-        assertTrue(result, "Shall assess column as win but does not");
+        assertTrue(result, "Shall assess diagonal as win but does not");
     }
 
     @Test(description = "Shall assess diagonal as win but does not", dataProvider = "diagonalOWinningBoards")
@@ -76,7 +76,7 @@ public class ArbiterTest {
         var result = arbiter.checkDiagonals(gameBoard);
 
         //then
-        assertTrue(result, "Shall assess column as win but does not");
+        assertTrue(result, "Shall assess diagonal as win but does not");
     }
 
     @DataProvider()
@@ -96,7 +96,12 @@ public class ArbiterTest {
                 {Player.X, null, Player.O},
                 {Player.X, Player.X, Player.X}
         };
-        return new Object[]{board1, board2, board3};
+        Player[][] board4 = new Player[][]{
+                {Player.X, Player.X, Player.X},
+                {Player.X, Player.X, Player.X},
+                {Player.X, Player.X, Player.X}
+        };
+        return new Object[]{board1, board2, board3, board4};
     }
 
     @DataProvider()
@@ -116,7 +121,12 @@ public class ArbiterTest {
                 {Player.X, Player.O, Player.X},
                 {Player.O, Player.O, Player.O}
         };
-        return new Object[]{board1, board2, board3};
+        Player[][] board4 = new Player[][]{
+                {Player.O, Player.O, Player.O},
+                {Player.O, Player.O, Player.O},
+                {Player.O, Player.O, Player.O}
+        };
+        return new Object[]{board1, board2, board3, board4};
     }
 
     @DataProvider()
@@ -136,7 +146,12 @@ public class ArbiterTest {
                 {Player.X, null, Player.X},
                 {Player.O, null, Player.X}
         };
-        return new Object[]{board1, board2, board3};
+        Player[][] board4 = new Player[][]{
+                {Player.X, Player.X, Player.X},
+                {Player.X, Player.X, Player.X},
+                {Player.X, Player.X, Player.X}
+        };
+        return new Object[]{board1, board2, board3, board4};
     }
 
     @DataProvider()
@@ -156,7 +171,12 @@ public class ArbiterTest {
                 {Player.X, null, Player.O},
                 {Player.O, null, Player.O}
         };
-        return new Object[]{board1, board2, board3};
+        Player[][] board4 = new Player[][]{
+                {Player.O, Player.O, Player.O},
+                {Player.O, Player.O, Player.O},
+                {Player.O, Player.O, Player.O}
+        };
+        return new Object[]{board1, board2, board3, board4};
     }
 
     @DataProvider()
@@ -171,7 +191,12 @@ public class ArbiterTest {
                 {Player.O, Player.X, Player.X},
                 {Player.X, null, Player.O}
         };
-        return new Object[]{board1, board2};
+        Player[][] board3 = new Player[][]{
+                {Player.X, Player.X, Player.X},
+                {Player.X, Player.X, Player.X},
+                {Player.X, Player.X, Player.X}
+        };
+        return new Object[]{board1, board2, board3};
     }
 
     @DataProvider()
@@ -186,7 +211,12 @@ public class ArbiterTest {
                 {Player.O, Player.O, Player.X},
                 {Player.O, null, Player.X}
         };
-        return new Object[]{board1, board2};
+        Player[][] board3 = new Player[][]{
+                {Player.O, Player.O, Player.O},
+                {Player.O, Player.O, Player.O},
+                {Player.O, Player.O, Player.O}
+        };
+        return new Object[]{board1, board2, board3};
     }
 }
 
