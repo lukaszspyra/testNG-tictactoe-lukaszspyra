@@ -21,7 +21,7 @@ public final class Game {
             Move move = currentPlayer.makeMove(board);
             board = board.playAt(move);
             currentPlayer = currentPlayer.nextPlayer();
-        } while (arbiter.judge(board).endsGame());
+        } while (!arbiter.judge(board).endsGame());
 
         System.out.println(arbiter.judge(board).message());
         return currentPlayer;

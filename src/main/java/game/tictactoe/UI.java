@@ -7,18 +7,18 @@ public final class UI {
 
     private final Scanner scanner;
     private final PrintStream printer;
-    private final int boardOffset;
+    private final int arrayBeginOffset;
 
     UI() {
         scanner = new Scanner(System.in);
         printer = System.out;
-        boardOffset = 1;
+        arrayBeginOffset = 1;
     }
 
     public Move readMove(Board board, Player player) {
         do {
-            int row = readPlayerNumber(board, "row") - boardOffset;
-            int column = readPlayerNumber(board, "column") - boardOffset;
+            int row = readPlayerNumber(board, "row", player);
+            int column = readPlayerNumber(board, "column", player);
             Move plannedMove = new Move(row, column, player);
             if (board.isAvailable(plannedMove)) {
                 return plannedMove;
@@ -28,10 +28,10 @@ public final class UI {
     }
 
 
-    private int readPlayerNumber(Board board, String cell) {
+    private int readPlayerNumber(Board board, String cell, Player player) {
         do {
-            printInputMessage(cell, board);
-            int number = scanner.nextInt();
+            printInputMessage(cell, board, player);
+            int number = scanner.nextInt() - arrayBeginOffset;
             if (board.inBoardLimits(number)) {
                 return number;
             }
@@ -39,8 +39,8 @@ public final class UI {
         } while (true);
     }
 
-    private void printInputMessage(String cell, Board board) {
-        String userPrompt = String.format("Enter a %s number in range <1 ; %d>: ", cell, board.getGameBoard().length);
+    private void printInputMessage(String cell, Board board, Player player) {
+        String userPrompt = String.format("Player%s - Enter a %s number in range <1 ; %d>: ",player, cell, board.getGameBoard().length);
         printer.println(userPrompt);
     }
 

@@ -35,7 +35,7 @@ public final class Arbiter {
     private boolean checkDiagonals(Board board) {
         Player[][] gameBoard = board.getGameBoard();
         return (checkCellsForWin(gameBoard[0][0], gameBoard[1][1], gameBoard[2][2]) ||
-                checkCellsForWin(gameBoard[0][2], gameBoard[1][1], gameBoard[2][2]));
+                checkCellsForWin(gameBoard[0][2], gameBoard[1][1], gameBoard[2][0]));
     }
 
     private boolean checkCellsForWin(final Player playerMark, final Player playerMark1, final Player playerMark2) {

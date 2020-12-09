@@ -2,6 +2,7 @@ package game.tictactoe;
 
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 public final class Board {
 
@@ -20,11 +21,14 @@ public final class Board {
     }
 
     public boolean inBoardLimits(int userNumber) {
-        return !(userNumber > gameBoard.length || userNumber < 0);
+        return !(userNumber >= gameBoard.length || userNumber < 0);
     }
 
     public boolean isAnyCellEmpty() {
-        return Arrays.stream(gameBoard).anyMatch(Objects::isNull);
+        return Arrays
+                .stream(gameBoard)
+                .flatMap(e -> Stream.of(e))
+                .anyMatch(Objects::isNull);
     }
 
     public Board playAt(Move makeUpMove) {
