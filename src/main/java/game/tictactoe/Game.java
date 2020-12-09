@@ -1,5 +1,7 @@
 package game.tictactoe;
 
+import java.util.Optional;
+
 public final class Game {
 
     private final Arbiter arbiter;
@@ -15,15 +17,32 @@ public final class Game {
         this.currentPlayer = firstPlayer;
     }
 
-    public Player play() {
+    public Optional<Player> play() {
         do {
-            ui.printBoard(board);
-            Move move = currentPlayer.makeMove(board);
-            board = board.playAt(move);
+            board = playerChoosesCell();
             currentPlayer = currentPlayer.nextPlayer();
-        } while (!arbiter.judge(board).endsGame());
+        } while (arbiterDoesNotStopTheGame());
+        return gameEnds();
+    }
 
-        System.out.println(arbiter.judge(board).message());
-        return currentPlayer;
+    private boolean arbiterDoesNotStopTheGame() {
+        return !arbiter.judge(board).endsGame();
+    }
+
+    private Board playerChoosesCell() {
+        ui.printBoard(board);
+        Move move = currentPlayer.makeMove(board);
+        return board.playAt(move);
+    }
+
+    private Optional<Player> gameEnds() {
+        ui.printBoard(board);
+        Answer answer = arbiter.judge(board);
+        if (answer.isThereAWinner()){
+            ui.showMessage(currentPlayer + " - " + answer.message());
+            return Optional.of(currentPlayer);
+        }
+        ui.showMessage(answer.message());
+        return Optional.empty();
     }
 }

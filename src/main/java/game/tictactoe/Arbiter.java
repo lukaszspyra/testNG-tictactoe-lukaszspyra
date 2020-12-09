@@ -4,12 +4,12 @@ public final class Arbiter {
 
     Answer judge(Board board) {
         if (checkRows(board) || checkColumns(board) || checkDiagonals(board)) {
-            return createAnswer(true, "Congratulations you win");
+            return createAnswer(true, "Congratulations you win", true);
         }
         if (!board.isAnyCellEmpty()) {
-            return createAnswer(true, "End of game - tie");
+            return createAnswer(true, "End of game - tie", false);
         }
-        return createAnswer(false, "Game in progress");
+        return createAnswer(false, "Game in progress", false);
     }
 
     private boolean checkRows(Board board) {
@@ -45,8 +45,8 @@ public final class Arbiter {
         return playerMark == playerMark1 && playerMark1 == playerMark2;
     }
 
-    private Answer createAnswer(boolean endGame, String message) {
-        return new Answer(endGame, message);
+    private Answer createAnswer(boolean endGame, String message, boolean isThereAWinner) {
+        return new Answer(endGame, message, isThereAWinner);
     }
 
 }

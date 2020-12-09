@@ -8,6 +8,6 @@ public class Main {
         Arbiter arbiter = new Arbiter();
         Player firstPlayer = Player.X;
         Game game = new Game(board, ui, arbiter, firstPlayer);
-        Player winner = game.play();
+        game.play();
     }
 }

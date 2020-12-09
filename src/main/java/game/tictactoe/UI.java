@@ -23,7 +23,7 @@ public final class UI {
             if (board.isAvailable(plannedMove)) {
                 return plannedMove;
             }
-            printer.println("Cell is already played");
+            System.err.println("Cell is already played");
         } while (true);
     }
 
@@ -74,5 +74,9 @@ public final class UI {
             case X -> printer.print(" X ");
             case O -> printer.print(" O ");
         }
+    }
+
+    public void showMessage(Object object){
+        printer.println(object);
     }
 }
