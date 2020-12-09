@@ -23,7 +23,7 @@ public final class UI {
             if (board.isAvailable(plannedMove)) {
                 return plannedMove;
             }
-            System.out.println("Cell is already played");
+            printer.println("Cell is already played");
         } while (true);
     }
 
@@ -35,44 +35,44 @@ public final class UI {
             if (board.inBoardLimits(number)) {
                 return number;
             }
-            System.out.println("Input number outside the board limits");
+            System.err.println("Input number outside the board limits");
         } while (true);
     }
 
     private void printInputMessage(String cell, Board board) {
         String userPrompt = String.format("Enter a %s number in range <1 ; %d>: ", cell, board.getGameBoard().length);
-        System.out.println(userPrompt);
+        printer.println(userPrompt);
     }
 
 
     public void printBoard(final Board board) {
         String upperDelimiter = "-";
         String sideDelimiter = " | ";
-        System.out.println("      1   " + "  2   " + "  3   ");
-        System.out.println("   " + upperDelimiter.repeat(19));
+        printer.println("      1   " + "  2   " + "  3   ");
+        printer.println("   " + upperDelimiter.repeat(19));
         int columnNumber = 0;
         for (var rows : board.getGameBoard()) {
             columnNumber++;
-            System.out.print(columnNumber + " ");
-            System.out.print(sideDelimiter);
+            printer.print(columnNumber + " ");
+            printer.print(sideDelimiter);
             for (int i = 0; i < rows.length; i++) {
                 printCell(rows[i]);
-                System.out.print(sideDelimiter);
+                printer.print(sideDelimiter);
             }
-            System.out.println();
-            System.out.println("   " + upperDelimiter.repeat(19));
+            printer.println();
+            printer.println("   " + upperDelimiter.repeat(19));
         }
-        System.out.println();
+        printer.println();
     }
 
     private void printCell(Player player) {
         if (player == null) {
-            System.out.print("   ");
+            printer.print("   ");
             return;
         }
         switch (player) {
-            case X -> System.out.print(" X ");
-            case O -> System.out.print(" O ");
+            case X -> printer.print(" X ");
+            case O -> printer.print(" O ");
         }
     }
 }

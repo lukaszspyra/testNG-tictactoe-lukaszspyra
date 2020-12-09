@@ -16,13 +16,12 @@ public final class Game {
     }
 
     public Player play() {
-
         do {
+            ui.printBoard(board);
             Move move = currentPlayer.makeMove(board);
             board = board.playAt(move);
-            ui.printBoard(board);
             currentPlayer = currentPlayer.nextPlayer();
-        } while (!arbiter.judge(board).endsGame());
+        } while (arbiter.judge(board).endsGame());
 
         System.out.println(arbiter.judge(board).message());
         return currentPlayer;
