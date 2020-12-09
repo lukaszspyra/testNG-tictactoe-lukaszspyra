@@ -2,8 +2,14 @@ package game.tictactoe;
 
 public final class Arbiter {
 
-    boolean judge(Board board) {
-        return (checkRows(board) || checkColumns(board) || checkDiagonals(board));
+    Answer judge(Board board) {
+        if (checkRows(board) || checkColumns(board) || checkDiagonals(board)){
+            return createAnswer(true, "Congratulations you win");
+        }
+        if (!board.isAnyCellEmpty()){
+            return createAnswer(true, "End of game - tie");
+        }
+       return createAnswer(false, "Game in progress");
     }
 
     private boolean checkRows(Board board) {
@@ -37,6 +43,10 @@ public final class Arbiter {
             return false;
         }
         return playerMark == playerMark1 && playerMark1 == playerMark2;
+    }
+
+    private Answer createAnswer(boolean endGame, String message){
+        return new Answer(endGame, message);
     }
 
 }

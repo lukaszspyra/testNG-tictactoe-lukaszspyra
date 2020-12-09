@@ -16,8 +16,11 @@ public enum Player{
     },
     ;
 
-    Move makeMove(int row, int column){
-        return new Move(row, column, this);
+    private final UI ui = new UI();
+
+    Move makeMove(Board board){
+
+       return ui.readMove(board, this);
     }
 
     abstract Player nextPlayer();

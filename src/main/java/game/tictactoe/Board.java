@@ -14,16 +14,12 @@ public final class Board {
         return gameBoard;
     }
 
-    public boolean isValid(Move move) {
-        return inBoardLimits(move) && isNotPlayedYet(move);
-    }
-
-    private boolean inBoardLimits(Move move){
-        return !(move.getRow() > 2 || move.getRow() < 0 || move.getColumn() > 2 || move.getColumn() < 0);
-    }
-
-    private boolean isNotPlayedYet(Move move){
+    public boolean isAvailable(Move move) {
         return gameBoard[move.getRow()][move.getColumn()] == null;
+    }
+
+    public boolean inBoardLimits(int userNumber){
+        return !(userNumber > gameBoard.length || userNumber < 0);
     }
 
     public boolean isAnyCellEmpty(){
@@ -35,10 +31,4 @@ public final class Board {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "Board{" +
-                "gameBoard=" + Arrays.deepToString(gameBoard) +
-                '}';
-    }
 }
