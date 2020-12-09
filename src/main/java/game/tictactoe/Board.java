@@ -27,7 +27,7 @@ public final class Board {
     public boolean isAnyCellEmpty() {
         return Arrays
                 .stream(gameBoard)
-                .flatMap(e -> Stream.of(e))
+                .flatMap(Stream::of)
                 .anyMatch(Objects::isNull);
     }
 
