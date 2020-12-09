@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public final class Board {
+
     private final Player[][] gameBoard;
 
     Board(final Player[][] gameBoard) {
@@ -18,15 +19,15 @@ public final class Board {
         return gameBoard[move.getRow()][move.getColumn()] == null;
     }
 
-    public boolean inBoardLimits(int userNumber){
+    public boolean inBoardLimits(int userNumber) {
         return !(userNumber > gameBoard.length || userNumber < 0);
     }
 
-    public boolean isAnyCellEmpty(){
+    public boolean isAnyCellEmpty() {
         return Arrays.stream(gameBoard).anyMatch(Objects::isNull);
     }
 
-    public Board playAt(Move makeUpMove){
+    public Board playAt(Move makeUpMove) {
         gameBoard[makeUpMove.getRow()][makeUpMove.getColumn()] = makeUpMove.getPlayer();
         return this;
     }

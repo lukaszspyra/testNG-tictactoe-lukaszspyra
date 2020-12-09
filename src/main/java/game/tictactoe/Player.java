@@ -1,8 +1,8 @@
 package game.tictactoe;
 
-public enum Player{
+public enum Player {
 
-    X{
+    X {
         @Override
         Player nextPlayer() {
             return O;
@@ -18,9 +18,9 @@ public enum Player{
 
     private final UI ui = new UI();
 
-    Move makeMove(Board board){
+    Move makeMove(Board board) {
 
-       return ui.readMove(board, this);
+        return ui.readMove(board, this);
     }
 
     abstract Player nextPlayer();

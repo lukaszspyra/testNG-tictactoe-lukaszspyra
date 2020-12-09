@@ -15,7 +15,7 @@ public final class UI {
         boardOffset = 1;
     }
 
-    public Move readMove(Board board, Player player){
+    public Move readMove(Board board, Player player) {
         do {
             int row = readPlayerNumber(board, "row") - boardOffset;
             int column = readPlayerNumber(board, "column") - boardOffset;
@@ -28,18 +28,18 @@ public final class UI {
     }
 
 
-    private int readPlayerNumber(Board board, String cell){
+    private int readPlayerNumber(Board board, String cell) {
         do {
             printInputMessage(cell, board);
             int number = scanner.nextInt();
-            if (board.inBoardLimits(number)){
+            if (board.inBoardLimits(number)) {
                 return number;
             }
             System.out.println("Input number outside the board limits");
         } while (true);
     }
 
-    private void printInputMessage(String cell, Board board){
+    private void printInputMessage(String cell, Board board) {
         String userPrompt = String.format("Enter a %s number in range <1 ; %d>: ", cell, board.getGameBoard().length);
         System.out.println(userPrompt);
     }

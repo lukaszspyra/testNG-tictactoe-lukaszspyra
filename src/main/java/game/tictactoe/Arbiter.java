@@ -3,13 +3,13 @@ package game.tictactoe;
 public final class Arbiter {
 
     Answer judge(Board board) {
-        if (checkRows(board) || checkColumns(board) || checkDiagonals(board)){
+        if (checkRows(board) || checkColumns(board) || checkDiagonals(board)) {
             return createAnswer(true, "Congratulations you win");
         }
-        if (!board.isAnyCellEmpty()){
+        if (!board.isAnyCellEmpty()) {
             return createAnswer(true, "End of game - tie");
         }
-       return createAnswer(false, "Game in progress");
+        return createAnswer(false, "Game in progress");
     }
 
     private boolean checkRows(Board board) {
@@ -39,13 +39,13 @@ public final class Arbiter {
     }
 
     private boolean checkCellsForWin(final Player playerMark, final Player playerMark1, final Player playerMark2) {
-        if (playerMark == null || playerMark1 == null || playerMark2 == null){
+        if (playerMark == null || playerMark1 == null || playerMark2 == null) {
             return false;
         }
         return playerMark == playerMark1 && playerMark1 == playerMark2;
     }
 
-    private Answer createAnswer(boolean endGame, String message){
+    private Answer createAnswer(boolean endGame, String message) {
         return new Answer(endGame, message);
     }
 
