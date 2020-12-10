@@ -6,8 +6,7 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 @Test(groups = "Arbiter")
 public class ArbiterTest {
@@ -17,7 +16,7 @@ public class ArbiterTest {
     public static final String GAME_IN_PROGRESS = "Game in progress";
 
 
-    @Test(description = "Row X checks", dataProvider = "rowXWinningBoards")
+    @Test(description = "Row X checks", dataProvider = "rowXWinningBoards", groups = "beforeJudge")
     public void shallReturnTrueForXMarksInARow(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -29,7 +28,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess row as win but does not");
     }
 
-    @Test(description = "Row O checks", dataProvider = "rowOWinningBoards")
+    @Test(description = "Row O checks", dataProvider = "rowOWinningBoards", groups = "beforeJudge")
     public void shallReturnTrueForOMarksInARow(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -41,7 +40,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess row as win but does not");
     }
 
-    @Test(description = "Column X checks", dataProvider = "columnXWinningBoards")
+    @Test(description = "Column X checks", dataProvider = "columnXWinningBoards", groups = "beforeJudge")
     public void shallReturnTrueForXMarksInAColumn(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -53,7 +52,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess column as win but does not");
     }
 
-    @Test(description = "Column O checks", dataProvider = "columnOWinningBoards")
+    @Test(description = "Column O checks", dataProvider = "columnOWinningBoards", groups = "beforeJudge")
     public void shallReturnTrueForOMarksInAColumn(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -65,7 +64,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess column as win but does not");
     }
 
-    @Test(description = "Diagonal X checks", dataProvider = "diagonalXWinningBoards")
+    @Test(description = "Diagonal X checks", dataProvider = "diagonalXWinningBoards", groups = "beforeJudge")
     public void shallReturnTrueForXMarksDiagonal(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -77,7 +76,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess diagonal as win but does not");
     }
 
-    @Test(description = "Diagonal O checks", dataProvider = "diagonalOWinningBoards")
+    @Test(description = "Diagonal O checks", dataProvider = "diagonalOWinningBoards", groups = "beforeJudge")
     public void shallReturnTrueForOMarksDiagonal(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -89,7 +88,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess diagonal as win but does not");
     }
 
-    @Test(dataProvider = "allWinningBoards")
+    @Test(dataProvider = "allWinningBoards", dependsOnGroups = "beforeJudge")
     public void shallReturnWinAnswer(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
@@ -104,7 +103,7 @@ public class ArbiterTest {
 
     }
 
-    @Test(dataProvider = "tieBoards")
+    @Test(dataProvider = "tieBoards", dependsOnGroups = "beforeJudge")
     public void shallReturnTieAnswer(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
@@ -118,7 +117,7 @@ public class ArbiterTest {
         assertEquals(result, expected, "Shall return tie answer but does not");
     }
 
-    @Test(dataProvider = "gameInProgressBoards")
+    @Test(dataProvider = "gameInProgressBoards", dependsOnGroups = "beforeJudge")
     public void shallReturnInProgressAnswer(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
@@ -132,6 +131,33 @@ public class ArbiterTest {
         assertEquals(result, expected, "Shall return game in progress answer but does not");
     }
 
+    @Test(dataProvider = "tieBoards", dependsOnGroups = "beforeJudge")
+    public void shallNotReturnWinAnswerForTieBoards(Player[][] gameBoard) {
+        //given
+        Board board = new Board(gameBoard);
+        Arbiter arbiter = new Arbiter();
+        var expected = new Answer(true, WIN_MESSAGE, true);
+
+        //when
+        var result = arbiter.judge(board);
+
+        //then
+        assertNotEquals(result, expected, "Shall not return win answer for tie boards, but it does");
+    }
+
+    @Test(dataProvider = "gameInProgressBoards", dependsOnGroups = "beforeJudge")
+    public void shallNotReturnWinAnswerForInProgressBoards(Player[][] gameBoard) {
+        //given
+        Board board = new Board(gameBoard);
+        Arbiter arbiter = new Arbiter();
+        var expected = new Answer(true, WIN_MESSAGE, true);
+
+        //when
+        var result = arbiter.judge(board);
+
+        //then
+        assertNotEquals(result, expected, "Shall not return win answer for game in progress, but it does");
+    }
 
     @DataProvider()
     public static Object[] rowXWinningBoards() {
