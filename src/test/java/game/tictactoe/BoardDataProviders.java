@@ -3,6 +3,7 @@ package game.tictactoe;
 import org.testng.annotations.DataProvider;
 
 import java.util.Arrays;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class BoardDataProviders {
@@ -201,4 +202,23 @@ public class BoardDataProviders {
         };
         return new Object[]{board1, board2, board3};
     }
+
+
+    @DataProvider
+    public static Object[][] cellNumbersIn3x3(){
+        Integer[][] cellNumbers = new Integer[][]{
+                {0,0},
+                {0,1},
+                {0,2},
+                {1,0},
+                {1,1},
+                {1,2},
+                {2,0},
+                {2,1},
+                {2,2}
+        };
+        return cellNumbers;
+    }
+
+
 }
