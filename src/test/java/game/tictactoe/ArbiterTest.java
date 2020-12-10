@@ -3,11 +3,21 @@ package game.tictactoe;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+@Test(groups = "Arbiter")
 public class ArbiterTest {
 
-    @Test(description = "Shall assess row as win but does not", dataProvider = "rowXWinningBoards")
+    public static final String WIN_MESSAGE = "Congratulations you win";
+    public static final String TIE_MESSAGE = "End of game - tie";
+    public static final String GAME_IN_PROGRESS = "Game in progress";
+
+
+    @Test(description = "Row X checks", dataProvider = "rowXWinningBoards")
     public void shallReturnTrueForXMarksInARow(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -19,7 +29,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess row as win but does not");
     }
 
-    @Test(description = "Shall assess row as win but does not", dataProvider = "rowOWinningBoards")
+    @Test(description = "Row O checks", dataProvider = "rowOWinningBoards")
     public void shallReturnTrueForOMarksInARow(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -31,7 +41,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess row as win but does not");
     }
 
-    @Test(description = "Shall assess column as win but does not", dataProvider = "columnXWinningBoards")
+    @Test(description = "Column X checks", dataProvider = "columnXWinningBoards")
     public void shallReturnTrueForXMarksInAColumn(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -43,7 +53,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess column as win but does not");
     }
 
-    @Test(description = "Shall column row as win but does not", dataProvider = "columnOWinningBoards")
+    @Test(description = "Column O checks", dataProvider = "columnOWinningBoards")
     public void shallReturnTrueForOMarksInAColumn(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -55,7 +65,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess column as win but does not");
     }
 
-    @Test(description = "Shall assess diagonal as win but does not", dataProvider = "diagonalXWinningBoards")
+    @Test(description = "Diagonal X checks", dataProvider = "diagonalXWinningBoards")
     public void shallReturnTrueForXMarksDiagonal(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -67,7 +77,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess diagonal as win but does not");
     }
 
-    @Test(description = "Shall assess diagonal as win but does not", dataProvider = "diagonalOWinningBoards")
+    @Test(description = "Diagonal O checks", dataProvider = "diagonalOWinningBoards")
     public void shallReturnTrueForOMarksDiagonal(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -78,6 +88,22 @@ public class ArbiterTest {
         //then
         assertTrue(result, "Shall assess diagonal as win but does not");
     }
+
+    @Test(dataProvider = "allWinningBoards")
+    public void shallReturnWinAnswer(Player[][] gameBoard) {
+        //given
+        Board board = new Board(gameBoard);
+        Arbiter arbiter = new Arbiter();
+        var expected = new Answer(true, WIN_MESSAGE, true);
+
+        //when
+        var result = arbiter.judge(board);
+
+        //then
+        assertEquals(result, expected, "Shall return win answer but does not");
+
+    }
+
 
     @DataProvider()
     public static Object[] rowXWinningBoards() {
@@ -218,5 +244,21 @@ public class ArbiterTest {
         };
         return new Object[]{board1, board2, board3};
     }
+
+    @DataProvider(name = "allWinningBoards")
+    public static Object[] mergeOfWinningBoards() {
+
+        var mergedWinBoards = Stream.of(rowOWinningBoards(),
+                rowOWinningBoards(),
+                columnXWinningBoards(),
+                columnOWinningBoards(),
+                diagonalXWinningBoards(),
+                diagonalOWinningBoards())
+                .flatMap(Arrays::stream)
+                .toArray(Object[]::new);
+
+        return mergedWinBoards;
+    }
+
 }
 
