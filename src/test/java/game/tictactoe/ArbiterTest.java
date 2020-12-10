@@ -104,6 +104,34 @@ public class ArbiterTest {
 
     }
 
+    @Test(dataProvider = "tieBoards")
+    public void shallReturnTieAnswer(Player[][] gameBoard) {
+        //given
+        Board board = new Board(gameBoard);
+        Arbiter arbiter = new Arbiter();
+        var expected = new Answer(true, TIE_MESSAGE, false);
+
+        //when
+        var result = arbiter.judge(board);
+
+        //then
+        assertEquals(result, expected, "Shall return tie answer but does not");
+    }
+
+    @Test(dataProvider = "gameInProgressBoards")
+    public void shallReturnInProgressAnswer(Player[][] gameBoard) {
+        //given
+        Board board = new Board(gameBoard);
+        Arbiter arbiter = new Arbiter();
+        var expected = new Answer(false, GAME_IN_PROGRESS, false);
+
+        //when
+        var result = arbiter.judge(board);
+
+        //then
+        assertEquals(result, expected, "Shall return game in progress answer but does not");
+    }
+
 
     @DataProvider()
     public static Object[] rowXWinningBoards() {
@@ -258,6 +286,46 @@ public class ArbiterTest {
                 .toArray(Object[]::new);
 
         return mergedWinBoards;
+    }
+
+    @DataProvider
+    public static Object[] tieBoards() {
+        Player[][] board1 = new Player[][]{
+                {Player.O, Player.O, Player.X},
+                {Player.X, Player.X, Player.O},
+                {Player.O, Player.X, Player.O}
+        };
+        Player[][] board2 = new Player[][]{
+                {Player.X, Player.O, Player.X},
+                {Player.O, Player.X, Player.O},
+                {Player.O, Player.X, Player.O}
+        };
+        Player[][] board3 = new Player[][]{
+                {Player.O, Player.O, Player.X},
+                {Player.X, Player.O, Player.O},
+                {Player.O, Player.X, Player.X}
+        };
+        return new Object[]{board1, board2, board3};
+    }
+
+    @DataProvider
+    public static Object[] gameInProgressBoards() {
+        Player[][] board1 = new Player[][]{
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+        };
+        Player[][] board2 = new Player[][]{
+                {Player.O, null, Player.O},
+                {null, null, Player.X},
+                {Player.O, null, Player.X}
+        };
+        Player[][] board3 = new Player[][]{
+                {Player.X, Player.X, Player.O},
+                {null, Player.O, Player.X},
+                {Player.X, Player.X, Player.O}
+        };
+        return new Object[]{board1, board2, board3};
     }
 
 }
