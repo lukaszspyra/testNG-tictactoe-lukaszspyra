@@ -2,8 +2,7 @@ package game.tictactoe;
 
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 @Test(groups = "Board")
 public class BoardTest {
@@ -95,7 +94,16 @@ public class BoardTest {
         assertFalse(result, "Shall return that there is no empty cell, but does not");
     }
 
-    @Test
-    public void testPlayAt() {
+    @Test(dataProvider = "cellNumbersIn3x3", dataProviderClass = BoardDataProviders.class)
+    public void shallReturnCorrectlyModifiedBoardWhenMoveExecuted(int row, int column) {
+        //given
+        Board board = new Board(new Player[3][3]);
+        Move move = new Move(row, column, Player.O);
+
+        //when
+        var result = board.playAt(move).getGameBoard()[row][column];
+
+        //then
+        assertEquals(result, Player.O, "Cell shall be played by PlayerO, but was not");
     }
 }
