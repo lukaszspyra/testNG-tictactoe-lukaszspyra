@@ -10,10 +10,12 @@
         <groups>
             <run>
                 <include name="Arbiter"/>
+                <include name="Board"/>
             </run>
         </groups>
         <classes>
             <class name="game.tictactoe.ArbiterTest"/>
+            <class name="game.tictactoe.BoardTest"/>
         </classes>
     </test>
 </suite>
