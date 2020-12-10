@@ -16,7 +16,7 @@ public enum Player {
     },
     ;
 
-    private final UI ui = new UI();
+    private final UI ui = new UI(System.in, System.out);
 
     Move makeMove(Board board) {
 

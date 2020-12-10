@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 @Test(groups = "Board")
 public class BoardTest {
 
-    @Test(dataProvider = "cellNumbersIn3x3", dataProviderClass = BoardDataProviders.class)
+    @Test(dataProvider = "cellNumbersIn3x3", dataProviderClass = DataProviders.class)
     public void shallReturnTrueIfCellIsNotPlayedYet(int row, int column) {
         //given
         Board board = new Board(new Player[3][3]);
@@ -20,7 +20,7 @@ public class BoardTest {
         assertTrue(result, "Shall return that cell is not played yet, but does not");
     }
 
-    @Test(dataProvider = "cellNumbersIn3x3", dataProviderClass = BoardDataProviders.class)
+    @Test(dataProvider = "cellNumbersIn3x3", dataProviderClass = DataProviders.class)
     public void shallReturnFalseIfCellIsIsPlayedAlready(int row, int column) {
         //given
         Board board = new Board(new Player[][]{
@@ -69,7 +69,7 @@ public class BoardTest {
         assertFalse(result3, "Shall return that number is in board array limit, but does not");
     }
 
-    @Test(dataProvider = "gameInProgressBoards", dataProviderClass = BoardDataProviders.class)
+    @Test(dataProvider = "gameInProgressBoards", dataProviderClass = DataProviders.class)
     public void shallReturnTrueForAnyCellEmptyInInProgressBoards(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
@@ -82,7 +82,7 @@ public class BoardTest {
     }
 
 
-    @Test(dataProvider = "tieBoards", dataProviderClass = BoardDataProviders.class)
+    @Test(dataProvider = "tieBoards", dataProviderClass = DataProviders.class)
     public void shallReturnFalseForNoEmptyCells(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
@@ -94,7 +94,7 @@ public class BoardTest {
         assertFalse(result, "Shall return that there is no empty cell, but does not");
     }
 
-    @Test(dataProvider = "cellNumbersIn3x3", dataProviderClass = BoardDataProviders.class)
+    @Test(dataProvider = "cellNumbersIn3x3", dataProviderClass = DataProviders.class)
     public void shallReturnCorrectlyModifiedBoardWhenMoveExecuted(int row, int column) {
         //given
         Board board = new Board(new Player[3][3]);

@@ -1,17 +1,18 @@
 package game.tictactoe;
 
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
 public final class UI {
 
     private final Scanner scanner;
-    private final PrintStream printer;
+    private final PrintStream out;
     private final int arrayBeginOffset;
 
-    UI() {
-        scanner = new Scanner(System.in);
-        printer = System.out;
+    UI(final InputStream in, final PrintStream out) {
+        this.scanner = new Scanner(in);
+        this.out = out;
         arrayBeginOffset = 1;
     }
 
@@ -41,42 +42,42 @@ public final class UI {
 
     private void printInputMessage(String cell, Board board, Player player) {
         String userPrompt = String.format("Player%s - Enter a %s number in range <1 ; %d>: ",player, cell, board.getGameBoard().length);
-        printer.println(userPrompt);
+        out.println(userPrompt);
     }
 
 
     public void printBoard(final Board board) {
         String upperDelimiter = "-";
         String sideDelimiter = " | ";
-        printer.println("      1   " + "  2   " + "  3   ");
-        printer.println("   " + upperDelimiter.repeat(19));
+        out.println("      1   " + "  2   " + "  3   ");
+        out.println("   " + upperDelimiter.repeat(19));
         int columnNumber = 0;
         for (var rows : board.getGameBoard()) {
             columnNumber++;
-            printer.print(columnNumber + " ");
-            printer.print(sideDelimiter);
+            out.print(columnNumber + " ");
+            out.print(sideDelimiter);
             for (int i = 0; i < rows.length; i++) {
                 printCell(rows[i]);
-                printer.print(sideDelimiter);
+                out.print(sideDelimiter);
             }
-            printer.println();
-            printer.println("   " + upperDelimiter.repeat(19));
+            out.println();
+            out.println("   " + upperDelimiter.repeat(19));
         }
-        printer.println();
+        out.println();
     }
 
     private void printCell(Player player) {
         if (player == null) {
-            printer.print("   ");
+            out.print("   ");
             return;
         }
         switch (player) {
-            case X -> printer.print(" X ");
-            case O -> printer.print(" O ");
+            case X -> out.print(" X ");
+            case O -> out.print(" O ");
         }
     }
 
     public void showMessage(Object object){
-        printer.println(object);
+        out.println(object);
     }
 }

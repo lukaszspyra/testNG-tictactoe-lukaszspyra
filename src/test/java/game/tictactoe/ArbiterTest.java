@@ -12,7 +12,7 @@ public class ArbiterTest {
     public static final String GAME_IN_PROGRESS = "Game in progress";
 
 
-    @Test(dataProvider = "rowXWinningBoards", dataProviderClass = BoardDataProviders.class, groups = "beforeJudge")
+    @Test(dataProvider = "rowXWinningBoards", dataProviderClass = DataProviders.class, groups = "beforeJudge")
     public void shallReturnTrueForXMarksInARow(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -24,7 +24,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess row as win but does not");
     }
 
-    @Test(dataProvider = "rowOWinningBoards", dataProviderClass = BoardDataProviders.class, groups = "beforeJudge")
+    @Test(dataProvider = "rowOWinningBoards", dataProviderClass = DataProviders.class, groups = "beforeJudge")
     public void shallReturnTrueForOMarksInARow(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -36,7 +36,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess row as win but does not");
     }
 
-    @Test(dataProvider = "columnXWinningBoards", dataProviderClass = BoardDataProviders.class, groups = "beforeJudge")
+    @Test(dataProvider = "columnXWinningBoards", dataProviderClass = DataProviders.class, groups = "beforeJudge")
     public void shallReturnTrueForXMarksInAColumn(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -48,7 +48,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess column as win but does not");
     }
 
-    @Test(dataProvider = "columnOWinningBoards", dataProviderClass = BoardDataProviders.class, groups = "beforeJudge")
+    @Test(dataProvider = "columnOWinningBoards", dataProviderClass = DataProviders.class, groups = "beforeJudge")
     public void shallReturnTrueForOMarksInAColumn(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -60,7 +60,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess column as win but does not");
     }
 
-    @Test(dataProvider = "diagonalXWinningBoards", dataProviderClass = BoardDataProviders.class, groups = "beforeJudge")
+    @Test(dataProvider = "diagonalXWinningBoards", dataProviderClass = DataProviders.class, groups = "beforeJudge")
     public void shallReturnTrueForXMarksDiagonal(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -72,7 +72,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess diagonal as win but does not");
     }
 
-    @Test(dataProvider = "diagonalOWinningBoards", dataProviderClass = BoardDataProviders.class, groups = "beforeJudge")
+    @Test(dataProvider = "diagonalOWinningBoards", dataProviderClass = DataProviders.class, groups = "beforeJudge")
     public void shallReturnTrueForOMarksDiagonal(Player[][] gameBoard) {
         //given
         Arbiter arbiter = new Arbiter();
@@ -84,7 +84,7 @@ public class ArbiterTest {
         assertTrue(result, "Shall assess diagonal as win but does not");
     }
 
-    @Test(dataProvider = "allWinningBoards", dataProviderClass = BoardDataProviders.class, dependsOnGroups = "beforeJudge")
+    @Test(dataProvider = "allWinningBoards", dataProviderClass = DataProviders.class, dependsOnGroups = "beforeJudge")
     public void shallReturnWinAnswer(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
@@ -99,7 +99,7 @@ public class ArbiterTest {
 
     }
 
-    @Test(dataProvider = "tieBoards", dataProviderClass = BoardDataProviders.class, dependsOnGroups = "beforeJudge")
+    @Test(dataProvider = "tieBoards", dataProviderClass = DataProviders.class, dependsOnGroups = "beforeJudge")
     public void shallReturnTieAnswer(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
@@ -113,7 +113,7 @@ public class ArbiterTest {
         assertEquals(result, expected, "Shall return tie answer but does not");
     }
 
-    @Test(dataProvider = "gameInProgressBoards", dataProviderClass = BoardDataProviders.class, dependsOnGroups = "beforeJudge")
+    @Test(dataProvider = "gameInProgressBoards", dataProviderClass = DataProviders.class, dependsOnGroups = "beforeJudge")
     public void shallReturnInProgressAnswer(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
@@ -127,7 +127,7 @@ public class ArbiterTest {
         assertEquals(result, expected, "Shall return game in progress answer but does not");
     }
 
-    @Test(dataProvider = "tieBoards", dataProviderClass = BoardDataProviders.class, dependsOnGroups = "beforeJudge")
+    @Test(dataProvider = "tieBoards", dataProviderClass = DataProviders.class, dependsOnGroups = "beforeJudge")
     public void shallNotReturnWinAnswerForTieBoards(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
@@ -141,7 +141,7 @@ public class ArbiterTest {
         assertNotEquals(result, expected, "Shall not return win answer for tie boards, but it does");
     }
 
-    @Test(dataProvider = "gameInProgressBoards", dataProviderClass = BoardDataProviders.class, dependsOnGroups = "beforeJudge")
+    @Test(dataProvider = "gameInProgressBoards", dataProviderClass = DataProviders.class, dependsOnGroups = "beforeJudge")
     public void shallNotReturnWinAnswerForInProgressBoards(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
