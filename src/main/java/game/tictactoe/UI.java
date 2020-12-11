@@ -1,6 +1,5 @@
 package game.tictactoe;
 
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -10,8 +9,8 @@ public final class UI {
     private final PrintStream out;
     private final int arrayBeginOffset;
 
-    UI(final InputStream in, final PrintStream out) {
-        this.scanner = new Scanner(in);
+    UI(final Scanner scanner, final PrintStream out) {
+        this.scanner = scanner;
         this.out = out;
         arrayBeginOffset = 1;
     }

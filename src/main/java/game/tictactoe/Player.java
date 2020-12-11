@@ -1,5 +1,7 @@
 package game.tictactoe;
 
+import java.util.Scanner;
+
 public enum Player {
 
     X {
@@ -16,7 +18,7 @@ public enum Player {
     },
     ;
 
-    private final UI ui = new UI(System.in, System.out);
+    private final UI ui = new UI(new Scanner(System.in), System.out);
 
     Move makeMove(Board board) {
 

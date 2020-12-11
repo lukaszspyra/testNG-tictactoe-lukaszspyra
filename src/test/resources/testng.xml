@@ -12,12 +12,14 @@
                 <include name="Arbiter"/>
                 <include name="Board"/>
                 <include name="Answer"/>
+                <include name="UI"/>
             </run>
         </groups>
         <classes>
             <class name="game.tictactoe.ArbiterTest"/>
             <class name="game.tictactoe.BoardTest"/>
             <class name="game.tictactoe.AnswerTest"/>
+            <class name="game.tictactoe.UITest"/>
         </classes>
     </test>
 </suite>

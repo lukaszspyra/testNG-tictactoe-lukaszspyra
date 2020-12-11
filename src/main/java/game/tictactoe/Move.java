@@ -1,5 +1,7 @@
 package game.tictactoe;
 
+import java.util.Objects;
+
 public final class Move {
     private final int row;
     private final int column;
@@ -23,4 +25,18 @@ public final class Move {
         return player;
     }
 
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final Move move = (Move) o;
+        return row == move.row &&
+                column == move.column &&
+                player == move.player;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(row, column, player);
+    }
 }
