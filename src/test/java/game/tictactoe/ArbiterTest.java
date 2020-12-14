@@ -1,5 +1,6 @@
 package game.tictactoe;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
@@ -10,12 +11,17 @@ public class ArbiterTest {
     public static final String WIN_MESSAGE = "Congratulations you win";
     public static final String TIE_MESSAGE = "End of game - tie";
     public static final String GAME_IN_PROGRESS = "Game in progress";
+    private Arbiter arbiter;
 
+
+    @BeforeMethod
+    public void setUp() {
+        arbiter = new Arbiter();
+    }
 
     @Test(dataProvider = "rowXWinningBoards", dataProviderClass = DataProviders.class, groups = "beforeJudge")
     public void shallReturnTrueForXMarksInARow(Player[][] gameBoard) {
         //given
-        Arbiter arbiter = new Arbiter();
 
         //when
         var result = arbiter.checkRows(gameBoard);
@@ -27,7 +33,6 @@ public class ArbiterTest {
     @Test(dataProvider = "rowOWinningBoards", dataProviderClass = DataProviders.class, groups = "beforeJudge")
     public void shallReturnTrueForOMarksInARow(Player[][] gameBoard) {
         //given
-        Arbiter arbiter = new Arbiter();
 
         //when
         var result = arbiter.checkRows(gameBoard);
@@ -39,7 +44,6 @@ public class ArbiterTest {
     @Test(dataProvider = "columnXWinningBoards", dataProviderClass = DataProviders.class, groups = "beforeJudge")
     public void shallReturnTrueForXMarksInAColumn(Player[][] gameBoard) {
         //given
-        Arbiter arbiter = new Arbiter();
 
         //when
         var result = arbiter.checkColumns(gameBoard);
@@ -51,7 +55,7 @@ public class ArbiterTest {
     @Test(dataProvider = "columnOWinningBoards", dataProviderClass = DataProviders.class, groups = "beforeJudge")
     public void shallReturnTrueForOMarksInAColumn(Player[][] gameBoard) {
         //given
-        Arbiter arbiter = new Arbiter();
+        
 
         //when
         var result = arbiter.checkColumns(gameBoard);
@@ -63,7 +67,7 @@ public class ArbiterTest {
     @Test(dataProvider = "diagonalXWinningBoards", dataProviderClass = DataProviders.class, groups = "beforeJudge")
     public void shallReturnTrueForXMarksDiagonal(Player[][] gameBoard) {
         //given
-        Arbiter arbiter = new Arbiter();
+        
 
         //when
         var result = arbiter.checkDiagonals(gameBoard);
@@ -75,7 +79,7 @@ public class ArbiterTest {
     @Test(dataProvider = "diagonalOWinningBoards", dataProviderClass = DataProviders.class, groups = "beforeJudge")
     public void shallReturnTrueForOMarksDiagonal(Player[][] gameBoard) {
         //given
-        Arbiter arbiter = new Arbiter();
+        
 
         //when
         var result = arbiter.checkDiagonals(gameBoard);
@@ -88,7 +92,7 @@ public class ArbiterTest {
     public void shallReturnWinAnswer(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
-        Arbiter arbiter = new Arbiter();
+        
         var expected = new Answer(true, WIN_MESSAGE, true);
 
         //when
@@ -103,7 +107,7 @@ public class ArbiterTest {
     public void shallReturnTieAnswer(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
-        Arbiter arbiter = new Arbiter();
+        
         var expected = new Answer(true, TIE_MESSAGE, false);
 
         //when
@@ -117,7 +121,7 @@ public class ArbiterTest {
     public void shallReturnInProgressAnswer(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
-        Arbiter arbiter = new Arbiter();
+        
         var expected = new Answer(false, GAME_IN_PROGRESS, false);
 
         //when
@@ -131,7 +135,7 @@ public class ArbiterTest {
     public void shallNotReturnWinAnswerForTieBoards(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
-        Arbiter arbiter = new Arbiter();
+        
         var expected = new Answer(true, WIN_MESSAGE, true);
 
         //when
@@ -145,7 +149,7 @@ public class ArbiterTest {
     public void shallNotReturnWinAnswerForInProgressBoards(Player[][] gameBoard) {
         //given
         Board board = new Board(gameBoard);
-        Arbiter arbiter = new Arbiter();
+        
         var expected = new Answer(true, WIN_MESSAGE, true);
 
         //when
