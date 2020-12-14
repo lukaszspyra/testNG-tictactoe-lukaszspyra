@@ -1,6 +1,9 @@
 package game.tictactoe;
 
 import java.io.PrintStream;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.util.Optional;
 import java.util.Scanner;
 
 public final class UI {
@@ -29,18 +32,30 @@ public final class UI {
 
 
     private int readPlayerNumber(Board board, String cell, Player player) {
+        var numberFormat = NumberFormat.getIntegerInstance();
         do {
             printInputMessage(cell, board, player);
-            int number = scanner.nextInt() - arrayBeginOffset;
-            if (board.inBoardLimits(number)) {
-                return number;
-            }
-            System.err.println("Input number outside the board limits");
+            final Optional<Integer> validNumber = validateIntegerInput(board, numberFormat);
+            if (validNumber.isPresent()) return validNumber.get();
         } while (true);
     }
 
+    private Optional<Integer> validateIntegerInput(final Board board, final NumberFormat numberFormat) {
+        String userInput = scanner.nextLine();
+        try {
+            int number = numberFormat.parse(userInput).intValue() - arrayBeginOffset;
+            if (board.inBoardLimits(number)) {
+                return Optional.of(number);
+            }
+            System.err.println("Input number outside the board limits");
+        } catch (ParseException e) {
+            System.err.println("Input number is not valid integral");
+        }
+        return Optional.empty();
+    }
+
     private void printInputMessage(String cell, Board board, Player player) {
-        String userPrompt = String.format("Player%s - Enter a %s number in range <1 ; %d>: ",player, cell, board.getGameBoard().length);
+        String userPrompt = String.format("Player%s - Enter a %s number in range <1 ; %d>: ", player, cell, board.getGameBoard().length);
         out.println(userPrompt);
     }
 
@@ -76,7 +91,7 @@ public final class UI {
         }
     }
 
-    public void showMessage(Object object){
+    public void showMessage(Object object) {
         out.println(object);
     }
 }
