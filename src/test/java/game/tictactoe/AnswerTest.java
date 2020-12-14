@@ -10,7 +10,7 @@ public class AnswerTest {
 
 
     @Test(dataProvider = "equalAnswers")
-    public void testEqualAnswers(Answer answer1, Answer answer2) {
+    public void theSameAnswersShallBeEqual(Answer answer1, Answer answer2) {
         //given
 
 
@@ -22,7 +22,7 @@ public class AnswerTest {
     }
 
     @Test(dataProvider = "notEqualAnswers")
-    public void testNotEqualAnswers(Answer answer1, Answer answer2) {
+    public void differentAnswersShallNotBeEqual(Answer answer1, Answer answer2) {
         //given
 
 
@@ -34,7 +34,7 @@ public class AnswerTest {
     }
 
     @Test(dataProvider = "equalAnswers")
-    public void testTheSameHashCode(Answer answer1, Answer answer2) {
+    public void equalAnswersShallHaveTheSameHashCode(Answer answer1, Answer answer2) {
         //given
 
 
