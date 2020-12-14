@@ -46,6 +46,6 @@ public class UITest {
         var result = ui.readMove(board, player);
 
         //then
-        assertEquals(outputError.toString().trim(), "Input number is not valid integral");
+        assertEquals(outputError.toString().trim(), "Input number is not valid integral", "Shall return with error message, but it did not");
     }
 }
