@@ -218,4 +218,18 @@ public class DataProviders {
         return cellNumbers;
     }
 
+    @DataProvider
+    public static Object[][] notValidIntegerInputs(){
+        String[][] errInputs = new String[][]{
+                {"t", "1", "1"},
+                {"%", "1", "1"},
+                {"o", "1", "1"},
+                {"p","1","1"},
+                {"1","%", "2"},
+                {"1","@", "3"},
+                {"3","", "1"},
+                {"3",null, "1"}
+        };
+        return errInputs;
+    }
 }
