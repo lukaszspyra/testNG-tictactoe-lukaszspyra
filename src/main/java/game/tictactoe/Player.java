@@ -2,7 +2,7 @@ package game.tictactoe;
 
 import java.util.Scanner;
 
-public enum Player {
+enum Player {
 
     X {
         @Override

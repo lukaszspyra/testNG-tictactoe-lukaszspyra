@@ -2,7 +2,7 @@ package game.tictactoe;
 
 import java.util.Objects;
 
-public final class Move {
+final class Move {
     private final int row;
     private final int column;
     private final Player player;

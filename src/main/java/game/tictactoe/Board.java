@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-public final class Board {
+final class Board {
 
     private final Player[][] gameBoard;
 

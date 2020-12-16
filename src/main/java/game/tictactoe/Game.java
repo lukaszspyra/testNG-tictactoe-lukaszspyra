@@ -2,7 +2,7 @@ package game.tictactoe;
 
 import java.util.Optional;
 
-public final class Game {
+final class Game {
 
     private final Arbiter arbiter;
     private final UI ui;

@@ -1,6 +1,6 @@
 package game.tictactoe;
 
-public final class Arbiter {
+final class Arbiter {
 
     Answer judge(Board board) {
         var gameBoard = board.getGameBoard();

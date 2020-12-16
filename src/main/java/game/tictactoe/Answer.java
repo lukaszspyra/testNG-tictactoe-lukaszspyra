@@ -2,7 +2,7 @@ package game.tictactoe;
 
 import java.util.Objects;
 
-public final class Answer {
+final class Answer {
 
     private final boolean endGame;
     private final boolean isThereAWinner;

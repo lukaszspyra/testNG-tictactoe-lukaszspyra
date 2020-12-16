@@ -2,7 +2,7 @@ package game.tictactoe;
 
 import java.util.Scanner;
 
-public class Main {
+class Main {
 
     public static void main(String[] args) {
         Board board = new Board(new Player[3][3]);

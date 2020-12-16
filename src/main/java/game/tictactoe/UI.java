@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.util.Optional;
 import java.util.Scanner;
 
-public final class UI {
+final class UI {
 
     private final Scanner scanner;
     private final PrintStream out;
