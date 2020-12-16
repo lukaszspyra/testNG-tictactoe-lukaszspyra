@@ -17,11 +17,11 @@
             </run>
         </groups>
         <classes>
-            <class name="game.tictactoe.ArbiterTest"/>
-            <class name="game.tictactoe.BoardTest"/>
-            <class name="game.tictactoe.AnswerTest"/>
-            <class name="game.tictactoe.UITest"/>
-            <class name="game.tictactoe.MoveTest"/>
+            <class name="spyra.lukasz.game.tictactoe.tictactoe.ArbiterTest"/>
+            <class name="spyra.lukasz.game.tictactoe.tictactoe.BoardTest"/>
+            <class name="spyra.lukasz.game.tictactoe.tictactoe.AnswerTest"/>
+            <class name="spyra.lukasz.game.tictactoe.tictactoe.UITest"/>
+            <class name="spyra.lukasz.game.tictactoe.tictactoe.MoveTest"/>
         </classes>
     </test>
 </suite>

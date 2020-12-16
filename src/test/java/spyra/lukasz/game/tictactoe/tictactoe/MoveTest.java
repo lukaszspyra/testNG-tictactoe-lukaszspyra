@@ -1,4 +1,4 @@
-package game.tictactoe;
+package spyra.lukasz.game.tictactoe.tictactoe;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;

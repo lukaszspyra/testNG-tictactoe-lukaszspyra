@@ -1,4 +1,4 @@
-package game.tictactoe;
+package spyra.lukasz.game.tictactoe.tictactoe;
 
 import java.util.Objects;
 
